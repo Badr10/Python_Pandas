@@ -24,19 +24,25 @@ class Panda:
 
     def sort_dataset(self):
         # sort dataframe by column value
-        print self.__data.sort_values(by='label',ascending=1)
+        # print self.__data.sort_values(by='label',ascending=1)
         # sort by last name or value in string
-        reg=[reg for reg in self.__data]
-        sorted(self.__data['label'],key=lambda x: len(x))
-        print self.__data.head()
+        reg=[reg for reg in self.__data['label']]
+        print reg
+        print sorted(self.__data['label'],key=lambda x: len(x))
+
 
     def drop_column(self):
         print self.__data.drop('label',axis=1).head()
         print self.__data.drop(['label','message'],axis=1)
         print self.__data[self.__data.label != 'ham']
 
+    def drop_duplicated(self):
+        print self.__data['label'].drop_duplicates()
+
+
 if __name__ == "__main__" :
     path = '/Users/badrkhamis/learning_path/python/classfication_scitit-learn/sms.csv'
     pointer = Panda(path)
-    pointer.basic_panda()
-    pointer.drop_column()
+    # pointer.basic_panda()
+    # pointer.sort_dataset()
+    pointer.drop_duplicated()
