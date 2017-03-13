@@ -32,9 +32,12 @@ class Panda:
 
 
     def drop_column(self):
-        print self.__data.drop('label',axis=1).head()
-        print self.__data.drop(['label','message'],axis=1)
-        print self.__data[self.__data.label != 'ham']
+        sd=[]
+        # print self.__data.drop('label',axis=1).head()
+        # print self.__data.drop(['label','message'],axis=1)
+        # print self.__data.message[(self.__data.label != 'ham') & (self.__data.message.map(lambda x: len(x) == 5)) ]
+        sd.append(self.__data.label[self.__data['message'].map(lambda x: len(x) == 5)])
+        print sd
 
     def drop_duplicated(self):
         print self.__data['label'].drop_duplicates()
@@ -44,5 +47,6 @@ if __name__ == "__main__" :
     path = '/Users/badrkhamis/learning_path/python/classfication_scitit-learn/sms.csv'
     pointer = Panda(path)
     # pointer.basic_panda()
-    # pointer.sort_dataset()
-    pointer.drop_duplicated()
+    pointer.drop_column()
+
+    # pointer.drop_duplicated()
